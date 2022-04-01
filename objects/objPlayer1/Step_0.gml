@@ -8,6 +8,9 @@ var frenteSolto = keyboard_check_released(vk_right);
 var trazSolto = keyboard_check_released(vk_left);   
 var cimaSolto = keyboard_check_released(vk_up); 
 var baixoSolto = keyboard_check_released(vk_down);
+
+var pulo = keyboard_check_pressed(ord("S"));
+var soco = keyboard_check_pressed(ord("A"));
 #endregion
 
 switch(estado){
@@ -15,36 +18,63 @@ switch(estado){
 		velocidadeHorizontal = 0;
 		velocidadeVertical = 0;
 		sprite_index = sprPlayer1Parado;
+		image_speed = 1;
+		
 		var acionouSetas = frente || traz || cima || baixo;
-		if(acionouSetas){
-			estado = Player.andando;
+		if(acionouSetas){estado = Player.andando;}
+		if(pulo){ 
+			estado = Player.pulando;
+			pulou = false;
 		}
+		if(soco){estado = Player.atacando;}		
 	break;
 	
 	case Player.andando:
-		sprite_index = sprPlayer1Andando;
+		sprite_index = sprPlayer1Andando;		
 		var existeMovimentoX = (frente || traz) && (abs(velocidadeHorizontal) <= velocidade);
-		if(existeMovimentoX){
-			velocidadeHorizontal += (frente - traz) * velocidade;				
-		}
+		if(existeMovimentoX){velocidadeHorizontal += (frente - traz) * velocidade;}
 		
 		var existeMovimentoY = (cima || baixo) && (abs(velocidadeVertical) <= velocidade);				
-		if(existeMovimentoY){			
-				velocidadeVertical += (cima - baixo) * velocidade;					
-		}
+		if(existeMovimentoY){velocidadeVertical += (cima - baixo) * velocidade;}
 		
-		if(velocidadeHorizontal != 0){
-			image_xscale = sign(velocidadeHorizontal);
-		}
+		if(velocidadeHorizontal != 0){image_xscale = sign(velocidadeHorizontal);}
 		
 		var soltouSetas = (frenteSolto || trazSolto || cimaSolto || baixoSolto);
-		if(soltouSetas){estado = Player.parado;}		
+		if(soltouSetas){estado = Player.parado;}
+		
+		if(pulo){ 
+			estado = Player.pulando;
+			pulou = false;
+		}
+		
+		if(soco){estado = Player.atacando;}		
 	break;
 	
 	case Player.pulando:
+		if(movimentoVertical > 0){ image_index = 2;}
+				
+		if(place_meeting(x, y, objChaoCenario) && !pulou){
+			posicaoTemporaria = y;
+			movimentoVertical = -7.5;	
+			sprite_index = sprPlayer1Pulando
+			image_speed = 0;
+			image_index = 0;
+			pulou = true;
+		}else{
+			if(y < posicaoTemporaria){
+				movimentoVertical += gravidade;
+			}else{
+				movimentoVertical = 0;
+				estado = Player.parado;
+			}
+		}
+		y += movimentoVertical;
 	break;
 	
 	case Player.atacando:
+		sprite_index = sprPlayer1SocoSimples;	
+		image_speed = 1;
+		if(image_index == image_number){estado = Player.parado;}		
 	break;
 	
 	case Player.dano:
@@ -54,36 +84,7 @@ switch(estado){
 	break;
 }
 
+if(estado != Player.pulando){y = clamp(y, 363, 458);}	
+
 x += velocidadeHorizontal;
 y += velocidadeVertical;
-
-
-
-
-
-
-
-/*
-pulo = keyboard_check_pressed(vk_space);
-
-if(place_meeting(x, y, objChaoCenario)){
-	if(y >= posicaoTemporaria){
-		movimentoVertical = 0;
-	}
-	
-	if(pulo){
-		posicaoTemporaria = y;
-		movimentoVertical -= 7.5;
-	}
-}else{
-	movimentoVertical += gravidade;	
-	sprite_index = sprPlayer1Pulando;
-	image_index = 0;
-}
-
-if(movimentoVertical > 0){
-	image_index = 2;
-}
-
-y += movimentoVertical; 
-*/

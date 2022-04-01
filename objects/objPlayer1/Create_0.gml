@@ -1,9 +1,9 @@
 posicaoTemporaria = 0;
 gravidade = 0.5;
 movimentoVertical = 0;
-pulo = false;
+pulou = false;
 
-velocidade = 2;
+velocidade = 1;
 velocidadeHorizontal = 0;
 velocidadeVertical = 0;
 
