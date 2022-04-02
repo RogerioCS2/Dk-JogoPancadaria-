@@ -4,6 +4,7 @@
     {"id":{"name":"sprFundo02","path":"sprites/sprFundo02/sprFundo02.yy",},"order":1,},
     {"id":{"name":"sprArvores","path":"sprites/sprArvores/sprArvores.yy",},"order":2,},
     {"id":{"name":"snMorte","path":"sounds/snMorte/snMorte.yy",},"order":1,},
+    {"id":{"name":"snMusicafase01","path":"sounds/snMusicafase01/snMusicafase01.yy",},"order":0,},
     {"id":{"name":"Stage02","path":"rooms/Stage02/Stage02.yy",},"order":1,},
     {"id":{"name":"sprInimigoAtacando","path":"sprites/sprInimigoAtacando/sprInimigoAtacando.yy",},"order":6,},
     {"id":{"name":"objChaoCenario","path":"objects/objChaoCenario/objChaoCenario.yy",},"order":0,},
@@ -78,6 +79,7 @@
     {"folderPath":"folders/Sprites/Cenario/PrimeiraFase.yy","order":2,"resourceVersion":"1.0","name":"PrimeiraFase","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Sprites/Inimigos/InimigoBase.yy","order":1,"resourceVersion":"1.0","name":"InimigoBase","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Musicas/Sons.yy","order":1,"resourceVersion":"1.0","name":"Sons","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Musicas/Musicas.yy","order":2,"resourceVersion":"1.0","name":"Musicas","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

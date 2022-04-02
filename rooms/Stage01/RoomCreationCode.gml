@@ -1,0 +1,1 @@
+audio_play_sound(snMusicafase01, 2, true);

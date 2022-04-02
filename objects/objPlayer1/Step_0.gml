@@ -145,3 +145,9 @@ if (podeMover){
 	x += velocidadeHorizontal;
 	y += velocidadeVertical;
 }
+
+#region Efeito Paralax
+layer_x("Fundo02", x * -0.1);
+layer_x("Fundo03", x * 0.2);
+layer_x("Fundo04", x * -0.3);
+#endregion
