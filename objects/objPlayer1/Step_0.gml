@@ -12,6 +12,16 @@ var baixoSolto = keyboard_check_released(vk_down);
 var pulo = keyboard_check_pressed(ord("S"));
 var soco = keyboard_check_pressed(ord("A"));
 #endregion
+#region Profundidade Cenario
+	var inimigo = instance_place(x, y, objInimigoBase);
+	if(inimigo != noone){
+		if(y < inimigo.y){
+			depth = 2;
+		}else{
+			depth = 0;
+		}
+	}
+#endregion
 
 switch(estado){
 	case Player.parado:

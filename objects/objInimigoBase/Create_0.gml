@@ -1,10 +1,11 @@
 invencibilidade = false;
-vida = 5;
+vida = 10;
 velocidadeHorizontalI = 0;
 velocidadeVerticalI = 0;
 gravidadeI = 0.5;
 posicaoTemporariaI = 0;
 pulouI = false;
+depth = 1;
 
 animacaoInimigos = [
 	sprInimigo0, 
@@ -12,7 +13,7 @@ animacaoInimigos = [
 	sprInimigo0Hibernando, 
 	sprInimigo0LevandoDano, 
 	sprInimigo0Morrendo, 
-	sprInimigo0Parado
+	sprInimigo0Parado	
 ]
 
 enum Inimigo{
@@ -23,4 +24,4 @@ enum Inimigo{
 	morrendo	
 }
 
-estadoI = Inimigo.parado;
+estadoI = noone;
