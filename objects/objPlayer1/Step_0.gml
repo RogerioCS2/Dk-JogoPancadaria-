@@ -1,4 +1,4 @@
-#region Declarando variaveis de entrada
+#region Declarando Variaveis de Entrada
 var frente = keyboard_check(vk_right);
 var traz = keyboard_check(vk_left); 
 var cima = keyboard_check(vk_down); 
@@ -22,8 +22,15 @@ var soco = keyboard_check_pressed(ord("A"));
 		}
 	}
 #endregion
+#region Verificando a Vida do Player
+
+if(vidaPlayer1 <= 0){ estado = Player.morrendo;}
+
+#endregion
 
 switch(estado){
+	#region Player Parado
+	
 	case Player.parado:
 		velocidadeHorizontal = 0;
 		velocidadeVertical = 0;
@@ -38,6 +45,9 @@ switch(estado){
 		}
 		if(soco){estado = Player.atacando;}		
 	break;
+	
+	#endregion
+	#region Player Andando
 	
 	case Player.andando:
 		sprite_index = sprPlayer1Andando;		
@@ -60,6 +70,9 @@ switch(estado){
 		if(soco){estado = Player.atacando;}		
 	break;
 	
+	#endregion
+	#region Player Pulando
+	
 	case Player.pulando:
 		if(movimentoVertical > 0){ image_index = 2;}
 				
@@ -81,22 +94,53 @@ switch(estado){
 		y += movimentoVertical;
 	break;
 	
+	#endregion
+	#region Player Atacando
+	
 	case Player.atacando:
+		speed = 0;
 		var acertouInimigo = instance_place(x, y, objInimigoBase);
-		if(acertouInimigo != noone){acertouInimigo.estadoI = Inimigo.dano;}				
-		sprite_index = sprPlayer1SocoSimples;	
-		image_speed = 1;
-		if(image_index == image_number){estado = Player.parado;}		
+		if(acertouInimigo != noone){acertouInimigo.estadoI = Inimigo.dano;}	
+		if(sprite_index != sprPlayer1SocoSimples){
+			sprite_index = sprPlayer1SocoSimples;	
+			image_speed = 1;
+			image_index = 0;
+		}
+		
+		if(image_index == image_number && !soco){estado = Player.parado;}		
 	break;
+	
+	#endregion
+	#region Player Dano
 	
 	case Player.dano:
+		speed = 0;
+		sprite_index = sprPlayer1LevandoDano;
+		if(!alarm[0]){
+			vidaPlayer1--;
+			alarm[0] = room_speed / 3;
+		}
 	break;
 	
+	#endregion
+	#region Player Morrendo
+	
 	case Player.morrendo:
+		sprite_index = sprPlayer1Morrendo;
+		if(image_index == image_number){
+			image_speed = 0;
+			speed = 0;
+		}
+		if(!alarm[1]){alarm[1] = room_speed;}
 	break;
+	
+	#endregion
 }
 
-if(estado != Player.pulando){y = clamp(y, 363, 458);}	
+if(estado != Player.pulando){y = clamp(y, 363, 458);}
 
-x += velocidadeHorizontal;
-y += velocidadeVertical;
+var podeMover = (estado != Player.morrendo) && (estado != Player.atacando) && (estado != Player.dano);
+if (podeMover){
+	x += velocidadeHorizontal;
+	y += velocidadeVertical;
+}

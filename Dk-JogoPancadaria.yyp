@@ -4,6 +4,7 @@
     {"id":{"name":"sprFundo02","path":"sprites/sprFundo02/sprFundo02.yy",},"order":1,},
     {"id":{"name":"sprArvores","path":"sprites/sprArvores/sprArvores.yy",},"order":2,},
     {"id":{"name":"Stage02","path":"rooms/Stage02/Stage02.yy",},"order":1,},
+    {"id":{"name":"sprInimigoAtacando","path":"sprites/sprInimigoAtacando/sprInimigoAtacando.yy",},"order":6,},
     {"id":{"name":"objChaoCenario","path":"objects/objChaoCenario/objChaoCenario.yy",},"order":0,},
     {"id":{"name":"sprPlayer1Correndo","path":"sprites/sprPlayer1Correndo/sprPlayer1Correndo.yy",},"order":2,},
     {"id":{"name":"sprPlayer1SocoSimples","path":"sprites/sprPlayer1SocoSimples/sprPlayer1SocoSimples.yy",},"order":4,},

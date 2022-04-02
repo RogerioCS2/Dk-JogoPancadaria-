@@ -2,6 +2,7 @@ posicaoTemporaria = 0;
 gravidade = 0.5;
 movimentoVertical = 0;
 pulou = false;
+vidaPlayer1 = 10;
 
 velocidade = 1;
 velocidadeHorizontal = 0;
