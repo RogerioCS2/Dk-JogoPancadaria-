@@ -72,6 +72,8 @@ switch(estado){
 	break;
 	
 	case Player.atacando:
+		var acertouInimigo = instance_place(x, y, objInimigoBase);
+		if(acertouInimigo != noone){acertouInimigo.estadoI = Inimigo.dano;}				
 		sprite_index = sprPlayer1SocoSimples;	
 		image_speed = 1;
 		if(image_index == image_number){estado = Player.parado;}		
