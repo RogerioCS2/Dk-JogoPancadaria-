@@ -8,7 +8,7 @@ pulouI = false;
 depth = 1;
 seguiu = false;
 visao = 50;
-distanciaGolpe = 5
+distanciaGolpe = 0.80;
 
 animacaoInimigos = [
 	sprInimigo0, 

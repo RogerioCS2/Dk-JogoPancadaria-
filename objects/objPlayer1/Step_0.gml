@@ -101,7 +101,7 @@ switch(estado){
 		speed = 0;
 		var acertouInimigo = instance_place(x, y, objInimigoBase);
 		if(acertouInimigo != noone){acertouInimigo.estadoI = Inimigo.dano;}	
-		if(sprite_index != sprPlayer1SocoSimples){
+		if(sprite_index != sprPlayer1SocoSimples && estado != Player.dano){
 			sprite_index = sprPlayer1SocoSimples;	
 			image_speed = 1;
 			image_index = 0;
@@ -118,6 +118,7 @@ switch(estado){
 		sprite_index = sprPlayer1LevandoDano;
 		if(!alarm[0]){
 			vidaPlayer1--;
+			audio_play_sound(snSoco, 1, false);
 			alarm[0] = room_speed / 3;
 		}
 	break;

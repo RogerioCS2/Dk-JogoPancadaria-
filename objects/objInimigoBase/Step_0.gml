@@ -44,7 +44,10 @@ switch(estadoI){
 			motion_add(localPlayer, 0.5); //movendo o ininigo na direção do player
 			if(speed > 0.4){speed = 0.4;}
 			if(x > playerInst.x){image_xscale = 1;}else{image_xscale = -1;}			
-			if(distance_to_object(playerInst) <= distanciaGolpe){estadoI = Inimigo.atacando;}			
+			
+			var podeAtacar = (distance_to_object(playerInst) <= distanciaGolpe) && (estadoI != Inimigo.dano) && (y >= objPlayer1.y);			
+			if(podeAtacar){estadoI = Inimigo.atacando;}
+			
 			if(!alarm[2]){alarm[2] = room_speed * (random_range(2, 5));}						
 		}else{
 			estadoI = Inimigo.parado;
@@ -64,10 +67,10 @@ switch(estadoI){
 	#endregion
 	#region Dano Inimigo
 	
-	case Inimigo.dano:	
+	case Inimigo.dano:			
 		speed = 0;
 		if(!invencibilidade){
-			vida--;	
+			vida--;				
 			if(vida <= 0){				
 				if(place_meeting(x, y, objChaoCenario) && !pulouI){
 					posicaoTemporariaI = y;
@@ -81,11 +84,12 @@ switch(estadoI){
 					if(y < posicaoTemporariaI){
 						velocidadeVerticalI += gravidadeI;
 					}else{
+						audio_play_sound(snMorte, 1, false);
 						velocidadeHorizontalI = 0;
 						velocidadeVerticalI = 0;
 						image_index = 10;
-						alarm[1] = room_speed;
-						estadoI = Inimigo.morrendo
+						alarm[1] = room_speed;						
+						estadoI = Inimigo.morrendo					
 					}
 				}				
 			}else{
@@ -95,6 +99,7 @@ switch(estadoI){
 				invencibilidade = true;
 				alarm[0] = room_speed;				
 				estadoI = Inimigo.parado;
+				audio_play_sound(snSoco, 1, false);
 			}
 		}else{
 			estadoI = Inimigo.seguindo
@@ -106,8 +111,8 @@ switch(estadoI){
 	#endregion	
 	#region Inimigo Morrendo
 	
-	case Inimigo.morrendo:
-		speed = 0;
+	case Inimigo.morrendo:		
+		speed = 0;				
 	break;
 	
 	#endregion
